@@ -12,7 +12,7 @@ public class HomePage extends BasePage {
 	
 	private By buildThemeBody;
 	private By searchBox = By.id("search_txt");
-	private By searchIcon = By.className("button-primary search-site-search");
+	private By searchIcon = By.xpath("//button[@class='button-primary search-site-search']");
 	
 	public HomePage(WebDriver driver, Wait<WebDriver> wait) {
 		super(driver, wait);

@@ -28,7 +28,10 @@ public class BuildTest extends BaseFramework {
 	 */
 	@Test
 	public void searchForProductLandsOnCorrectProduct() { 
-		// TODO: Implement this test
+		driver.get(getConfiguration("HOMEPAGE"));
+		HomePage homePage = new HomePage(driver, wait);
+		homePage.searchBox().sendKeys("Quoizel MY1613");
+		homePage.searchIcon().click();
 	}
 	
 	/** 
@@ -40,6 +43,7 @@ public class BuildTest extends BaseFramework {
 	@Test
 	public void addProductToCartFromCategoryDrop() { 
 		// TODO: Implement this test
+		driver.get("https://www.build.com/bathroom-sinks/c108504");
 	}
 	
 	/** 
