@@ -18,6 +18,7 @@ public class CartPage extends BasePage {
 	private By receipientEmailField;
 	private By sendEmailButton;
 	private By productTitleInCartPage;
+	private By emailSentConfirmation;
 	
 	public CartPage(WebDriver driver, Wait<WebDriver> wait) {
 		super(driver, wait);
@@ -29,6 +30,7 @@ public class CartPage extends BasePage {
 		receipientNameField = By.xpath("//input[@id='recipientName']");
 		receipientEmailField = By.xpath("//input[@id='recipientEmail']");
 		sendEmailButton = By.xpath("//*[@id='cart-email']/div/div/div[2]/div[2]/form/div[4]/button");
+		emailSentConfirmation = By.xpath("//header[@id='header']/div[4]/div/ul/li");
 	}
 	
 	public WebElement emailButton() {
@@ -61,6 +63,10 @@ public class CartPage extends BasePage {
 	
 	public WebElement sendEmailButton() {
 		return wait.until(ExpectedConditions.presenceOfElementLocated(sendEmailButton));
+	}
+	
+	public WebElement emailSentConfirmation() {
+		return wait.until(ExpectedConditions.presenceOfElementLocated(emailSentConfirmation));
 	}
 	
 }
