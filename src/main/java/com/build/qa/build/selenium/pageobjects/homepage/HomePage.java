@@ -14,6 +14,8 @@ public class HomePage extends BasePage {
 	private By searchBox;
 	private By searchIcon; 
 	private By cartButton;
+	private By signUpBanner;
+	private By closeSignUpBanner;
 
 	
 	public HomePage(WebDriver driver, Wait<WebDriver> wait) {
@@ -22,6 +24,8 @@ public class HomePage extends BasePage {
 		searchBox = By.id("search_txt");
 		searchIcon = By.xpath("//button[@class='button-primary search-site-search']");
 		cartButton = By.xpath("//*[@class='header-bar']/div/div/div/a[2]/button");
+		signUpBanner = By.xpath("//*[@id='newsletter-modal']/div[1]/h2");
+		closeSignUpBanner = By.xpath("//*[@id='email-subscribe-splash']/div/div/div[1]/button");
 	}
 	
 	public boolean onBuildTheme() { 
@@ -38,5 +42,13 @@ public class HomePage extends BasePage {
 	
 	public WebElement cartButton() {
 		return wait.until(ExpectedConditions.presenceOfElementLocated(cartButton));
+	}
+	
+	public WebElement signUpBanner() {
+		return wait.until(ExpectedConditions.presenceOfElementLocated(signUpBanner));
+	}
+	
+	public WebElement closeSignUpBanner() {
+		return wait.until(ExpectedConditions.presenceOfElementLocated(closeSignUpBanner));
 	}
 }

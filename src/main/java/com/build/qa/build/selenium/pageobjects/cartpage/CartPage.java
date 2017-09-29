@@ -21,7 +21,7 @@ public class CartPage extends BasePage {
 	
 	public CartPage(WebDriver driver, Wait<WebDriver> wait) {
 		super(driver, wait);
-		productTitleInCartPage = By.xpath("//*[@id='product']/div[2]/div/h2");
+		productTitleInCartPage = By.xpath("//table[@class='cart-items']/tbody/tr[1]/td[2]/a/span");
 		emailButton = By.xpath("//*[@id='page-content']/div[1]/div[1]/div/section[2]/div/div[1]/table/tbody/tr[2]/td/button[1]");
 		nameField = By.xpath("//input[@id='yourName']");
 		emailField = By.xpath("//input[@id='yourEmail']");
