@@ -37,10 +37,14 @@ public class BuildTest extends BaseFramework {
 	public void searchForProductLandsOnCorrectProduct() {
 		driver.get(getConfiguration("HOMEPAGE"));
 		HomePage homePage = new HomePage(driver, wait);
-		String productName = "Malaga Monterey Mosaic 3 Light 16\" Wide Flush Mount Ceiling Fixture with Pen Shell Mosaic Shade";
+		String productName = "Monterey Mosaic 3 Light 16\" Wide Flush Mount Ceiling Fixture with Pen Shell Mosaic Shade";
 		ProductPage productPage = new ProductPage(driver, wait);
 		homePage.searchBox().sendKeys("Quoizel MY1613");
 		homePage.searchIcon().click();
+
+		softly.assertThat(productPage.productTitle().getText())
+			.as("%s is the product title", productPage.productTitle().getText())
+			.isEqualTo(productName);
 	}
 
 	/**
