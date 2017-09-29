@@ -3,7 +3,9 @@ package com.build.qa.build.selenium.tests;
 import org.junit.Test;
 
 import com.build.qa.build.selenium.framework.BaseFramework;
+import com.build.qa.build.selenium.pageobjects.bathroomsinkcategory.BathroomSinkCategoryPage;
 import com.build.qa.build.selenium.pageobjects.homepage.HomePage;
+import com.build.qa.build.selenium.pageobjects.productpage.ProductPage;
 
 public class BuildTest extends BaseFramework { 
 	
@@ -42,8 +44,11 @@ public class BuildTest extends BaseFramework {
 	 */
 	@Test
 	public void addProductToCartFromCategoryDrop() { 
-		// TODO: Implement this test
 		driver.get("https://www.build.com/bathroom-sinks/c108504");
+		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
+		ProductPage productPage = new ProductPage(driver, wait);
+		bathroomSinkCategoryPage.secondItem().click();
+		productPage.addToBag().click();
 	}
 	
 	/** 
