@@ -6,6 +6,7 @@ import org.openqa.selenium.WebElement;
 
 import com.build.qa.build.selenium.framework.BaseFramework;
 import com.build.qa.build.selenium.pageobjects.bathroomsinkcategory.BathroomSinkCategoryPage;
+import com.build.qa.build.selenium.pageobjects.cartpage.CartPage;
 import com.build.qa.build.selenium.pageobjects.homepage.HomePage;
 import com.build.qa.build.selenium.pageobjects.productpage.ProductPage;
 
@@ -68,6 +69,7 @@ public class BuildTest extends BaseFramework {
 		ProductPage productPage = new ProductPage(driver, wait);
 		productPage.addToBag().click();
 		productPage.cartButton().click();
+		sendEmail();
 	}
 	
 	/** 
@@ -83,7 +85,7 @@ public class BuildTest extends BaseFramework {
 	}
 	
 	/*
-	 * I have added this method here because the sing-up banner displays not just in home screen but while accessing this below link
+	 * I have added this method here because the sing-up banner displays not just in home screen but while accessing this below link as well
 	 * https://www.build.com/bathroom-sinks/c108504
 	 */
 	private void checkSignUpBanner() {
@@ -97,5 +99,16 @@ public class BuildTest extends BaseFramework {
 		else {
 			System.out.println("SignUp Banner not found");
 		}
+	}
+	
+	private void sendEmail() {
+		CartPage cartPage = new CartPage(driver, wait);
+		cartPage.emailButton().click();
+		cartPage.nameField().sendKeys("Gowtham");
+		cartPage.emailField().sendKeys("gowthamjs@yahoo.com");
+		cartPage.receipientName().sendKeys("Meena");
+		cartPage.receipientEmail().sendKeys("meenakmm@yahoo.co.in");
+		cartPage.messageField().sendKeys("This is Gowtham, sending you a cart from my automation!");
+		cartPage.sendEmailButton().click();
 	}
 }
