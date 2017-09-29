@@ -1,6 +1,8 @@
 package com.build.qa.build.selenium.tests;
 
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.build.qa.build.selenium.framework.BaseFramework;
 import com.build.qa.build.selenium.pageobjects.bathroomsinkcategory.BathroomSinkCategoryPage;
@@ -46,8 +48,8 @@ public class BuildTest extends BaseFramework {
 	public void addProductToCartFromCategoryDrop() { 
 		driver.get("https://www.build.com/bathroom-sinks/c108504");
 		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
-		ProductPage productPage = new ProductPage(driver, wait);
 		bathroomSinkCategoryPage.secondItem().click();
+		ProductPage productPage = new ProductPage(driver, wait);
 		productPage.addToBag().click();
 	}
 	
@@ -59,7 +61,13 @@ public class BuildTest extends BaseFramework {
 	 */
 	@Test
 	public void addProductToCartAndEmailIt() { 
-		// TODO: Implement this test
+		driver.get("https://www.build.com/bathroom-sinks/c108504");
+		checkSignUpBanner();
+		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
+		bathroomSinkCategoryPage.secondItem().click();
+		ProductPage productPage = new ProductPage(driver, wait);
+		productPage.addToBag().click();
+		productPage.cartButton().click();
 	}
 	
 	/** 
@@ -72,5 +80,22 @@ public class BuildTest extends BaseFramework {
 	@Test
 	public void facetNarrowBysResultInCorrectProductCounts() { 
 		// TODO: Implement this test
+	}
+	
+	/*
+	 * I have added this method here because the sing-up banner displays not just in home screen but while accessing this below link
+	 * https://www.build.com/bathroom-sinks/c108504
+	 */
+	private void checkSignUpBanner() {
+		//WebElement to check text "5% Off your first order"
+		final WebElement signUpBanner = driver.findElement(By.xpath(".//*[@id='newsletter-modal']/div[1]/h2"));
+		final WebElement closeButton = driver.findElement(By.xpath("//*[@id='email-subscribe-splash']/div/div/div[1]/button"));
+		if(signUpBanner != null){
+			System.out.println("SignUpBanner being closed");
+			closeButton.click();
+		}
+		else {
+			System.out.println("SignUp Banner not found");
+		}
 	}
 }
