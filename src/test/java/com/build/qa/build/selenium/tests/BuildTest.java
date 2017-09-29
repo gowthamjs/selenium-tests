@@ -63,14 +63,10 @@ public class BuildTest extends BaseFramework {
 	 */
 	@Test
 	public void addProductToCartFromCategoryDrop() throws InterruptedException {
-		driver.get("https://www.build.com/bathroom-sinks/c108504");
-		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
+		naviagteToProductPage();
 		ProductPage productPage = new ProductPage(driver, wait);
 		HomePage homePage = new HomePage(driver, wait);
 		CartPage cartPage = new CartPage(driver, wait);
-		bathroomSinkCategoryPage.secondItem().click();
-		Thread.sleep(3000);
-		checkSignUpBanner();
 		String productTitle = productPage.productTitle().getText();
 		/*
 		 * I am not sure if this is the expected behavior but there is a difference in
@@ -100,13 +96,9 @@ public class BuildTest extends BaseFramework {
 	 */
 	@Test
 	public void addProductToCartAndEmailIt() throws InterruptedException {
-		driver.get("https://www.build.com/bathroom-sinks/c108504");
-		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
+		naviagteToProductPage();
 		ProductPage productPage = new ProductPage(driver, wait);
 		HomePage homePage = new HomePage(driver, wait);
-		bathroomSinkCategoryPage.secondItem().click();
-		Thread.sleep(3000);
-		checkSignUpBanner();
 		productPage.addToBag().click();
 		Thread.sleep(3000);
 		homePage.cartButton().click();	
@@ -141,6 +133,14 @@ public class BuildTest extends BaseFramework {
 		else {
 			LOG.info("SignUp banner is not displayed");
 		}
+	}
+	
+	private void naviagteToProductPage() throws InterruptedException {
+		driver.get("https://www.build.com/bathroom-sinks/c108504");
+		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
+		bathroomSinkCategoryPage.secondItem().click();
+		Thread.sleep(3000);
+		checkSignUpBanner();
 	}
 	
 	private void sendEmail() throws InterruptedException {
