@@ -1,9 +1,8 @@
 package com.build.qa.build.selenium.tests;
 
+
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -115,8 +114,29 @@ public class BuildTest extends BaseFramework {
 	 * @difficulty Hard
 	 */
 	@Test
-	public void facetNarrowBysResultInCorrectProductCounts() {
-		// TODO: Implement this test
+	public void facetNarrowBysResultInCorrectProductCounts() throws InterruptedException {
+		driver.get("https://www.build.com/bathroom-sinks/c108504");
+		Thread.sleep(8000);
+		checkSignUpBanner();
+		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
+		String numberOfItemsCount = bathroomSinkCategoryPage.totalNumberOfItems().getText();
+		int numberofItems = Integer.parseInt(numberOfItemsCount.replace(",", ""));
+		Thread.sleep(5000);
+		bathroomSinkCategoryPage.filterByLength().click();
+		Thread.sleep(3000);
+		bathroomSinkCategoryPage.filterByColor().click();
+		Thread.sleep(5000);
+		String numberOfItemsCountAfterFilteringCount = bathroomSinkCategoryPage.totalNumberOfItems().getText();
+		int numberofItemsAfterFiltering = Integer.parseInt(numberOfItemsCountAfterFilteringCount.replace(",", ""));
+		int numberOfProducts = driver.findElements(By.xpath("//ul[@id='category-product-drop']/li")).size();
+		
+		softly.assertThat(numberofItemsAfterFiltering)
+			.as("Validate items after filtering is less than total items")
+			.isLessThan(numberofItems);
+		
+		softly.assertThat(numberofItemsAfterFiltering)
+			.as("Validate all the items in the filtered list are displayed in the product grid")
+			.isEqualTo(numberOfProducts);
 	}
 
 	/*
