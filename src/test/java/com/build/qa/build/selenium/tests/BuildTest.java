@@ -14,7 +14,7 @@ import com.build.qa.build.selenium.pageobjects.productpage.ProductPage;
 
 public class BuildTest extends BaseFramework {
 
-	private static final Logger LOG = LoggerFactory.getLogger(BaseFramework.class);
+	private static final Logger LOG = LoggerFactory.getLogger(BuildTest.class);
 
 	/**
 	 * Extremely basic test that outlines some basic functionality and page
