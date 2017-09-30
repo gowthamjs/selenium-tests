@@ -56,7 +56,6 @@ public class BuildTest extends BaseFramework {
 	 * (https://www.build.com/bathroom-sinks/c108504) and add the second product
 	 * on the search results (Category Drop) page to the cart.
 	 * 
-	 * @throws InterruptedException
 	 * @assert: the product that is added to the cart is what is expected
 	 * @difficulty Easy-Medium
 	 */
@@ -73,10 +72,10 @@ public class BuildTest extends BaseFramework {
 		 * assuming its the expected behavior
 		 */
 		productTitle = productTitle.replace("White ", "");
+		Thread.sleep(1000);
 		productPage.addToBag().click();
-		Thread.sleep(3000);
 		homePage.cartButton().click();	
-
+		
 		softly.assertThat(cartPage.productTitle().getText())
 			.as("%s is the name of the item added to cart", productTitle)
 			.isEqualTo(productTitle); 
@@ -95,13 +94,19 @@ public class BuildTest extends BaseFramework {
 	 */
 	@Test
 	public void addProductToCartAndEmailIt() throws InterruptedException {
+		String emailConfirmationText = "Cart Sent! The cart has been submitted to the recipient via email.";
 		naviagteToProductPage();
 		ProductPage productPage = new ProductPage(driver, wait);
 		HomePage homePage = new HomePage(driver, wait);
+		CartPage cartPage = new CartPage(driver, wait);
+		Thread.sleep(1000);
 		productPage.addToBag().click();
-		Thread.sleep(3000);
 		homePage.cartButton().click();	
 		sendEmail();
+		
+		softly.assertThat(cartPage.emailSentConfirmation().getText())
+		.as("Email is successfully sent")
+		.isEqualTo(emailConfirmationText);
 	}
 
 	/**
@@ -155,18 +160,15 @@ public class BuildTest extends BaseFramework {
 		}
 	}
 	
-	private void naviagteToProductPage() throws InterruptedException {
+	private void naviagteToProductPage() {
 		driver.get("https://www.build.com/bathroom-sinks/c108504");
 		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
 		bathroomSinkCategoryPage.secondItem().click();
-		Thread.sleep(3000);
-		checkSignUpBanner();
+		//checkSignUpBanner();
 	}
 	
-	private void sendEmail() throws InterruptedException {
+	private void sendEmail() {
 		CartPage cartPage = new CartPage(driver, wait);
-		String emailConfirmationText = "Cart Sent! The cart has been submitted to the recipient via email.";
-		Thread.sleep(3000);
 		cartPage.emailButton().click();
 		cartPage.nameField().sendKeys("Gowtham");
 		cartPage.emailField().sendKeys("gowthamjs@yahoo.com");
@@ -174,9 +176,5 @@ public class BuildTest extends BaseFramework {
 		cartPage.receipientEmail().sendKeys("meenakmm@yahoo.co.in");
 		cartPage.messageField().sendKeys("This is Gowtham, sending you a cart from my automation!");
 		cartPage.sendEmailButton().click();
-		
-		softly.assertThat(cartPage.emailSentConfirmation().getText())
-			.as("Email is successfully sent")
-			.isEqualTo(emailConfirmationText);
 	}
 }

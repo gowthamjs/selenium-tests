@@ -27,18 +27,18 @@ public class BathroomSinkCategoryPage extends BasePage {
 	}
 	
 	public WebElement secondItem() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(secondItemIncategoryResults));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(secondItemIncategoryResults));
 	}
 	
 	public WebElement filterByLength() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(filterByLength));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(filterByLength));
 	}
 	
 	public WebElement filterByColor() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(filterByColor));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(filterByColor));
 	}
 	
 	public WebElement totalNumberOfItems() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(totalNumberOfItems));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(totalNumberOfItems));
 	}
 }

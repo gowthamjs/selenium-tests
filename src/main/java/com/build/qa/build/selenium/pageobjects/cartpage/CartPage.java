@@ -38,35 +38,35 @@ public class CartPage extends BasePage {
 	}
 	
 	public WebElement nameField() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(nameField));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(nameField));
 	}
 	
 	public WebElement emailField() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(emailField));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(emailField));
 	}
 	
 	public WebElement messageField() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(messageField));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(messageField));
 	}
 	
 	public WebElement receipientName() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(receipientNameField));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(receipientNameField));
 	}
 	
 	public WebElement receipientEmail() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(receipientEmailField));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(receipientEmailField));
 	}
 	
 	public WebElement productTitle() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(productTitleInCartPage));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(productTitleInCartPage));
 	}
 	
 	public WebElement sendEmailButton() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(sendEmailButton));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(sendEmailButton));
 	}
 	
 	public WebElement emailSentConfirmation() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(emailSentConfirmation));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(emailSentConfirmation));
 	}
 	
 }

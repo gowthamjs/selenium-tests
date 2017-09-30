@@ -16,7 +16,6 @@ public class HomePage extends BasePage {
 	private By cartButton;
 	private By signUpBanner;
 	private By closeSignUpBanner;
-
 	
 	public HomePage(WebDriver driver, Wait<WebDriver> wait) {
 		super(driver, wait);
@@ -33,22 +32,23 @@ public class HomePage extends BasePage {
 	}
 	
 	public WebElement searchBox() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(searchBox));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(searchBox));
 	}
 	
 	public WebElement searchIcon() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(searchIcon));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(searchIcon));
 	}
 	
 	public WebElement cartButton() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(cartButton));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(cartButton));
 	}
 	
 	public WebElement signUpBanner() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(signUpBanner));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(signUpBanner));
 	}
 	
 	public WebElement closeSignUpBanner() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(closeSignUpBanner));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(closeSignUpBanner));
 	}
+	
 }

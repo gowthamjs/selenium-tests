@@ -20,11 +20,11 @@ public class ProductPage extends BasePage {
 	}
 	
 	public WebElement addToBag() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(addToBag));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(addToBag));
 	}
 	
 	public WebElement productTitle() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(productTitle));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(productTitle));
 	}
 		
 }
