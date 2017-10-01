@@ -148,11 +148,6 @@ public class BuildTest extends BaseFramework {
 			.isEqualTo(numberOfProducts);
 	}
 
-	/*
-	 * I have added this method here because the sing-up banner displays not
-	 * just in home screen but while accessing this below link as well
-	 * https://www.build.com/bathroom-sinks/c108504
-	 */
 	private void checkSignUpBanner() {
 		HomePage homePage = new HomePage(driver, wait);
 		if (homePage.signUpBanner()!= null) {
@@ -173,6 +168,10 @@ public class BuildTest extends BaseFramework {
 	
 	private void sendEmail() throws InterruptedException {
 		CartPage cartPage = new CartPage(driver, wait);
+		/*
+		 * Sleep is used here because the email button in the cart screen doesn't display the fields
+		 * to send email until the page is completely loaded.
+		 */
 		Thread.sleep(1000);
 		cartPage.emailButton().click();
 		cartPage.nameField().sendKeys("Gowtham");
