@@ -34,7 +34,7 @@ public class CartPage extends BasePage {
 	}
 	
 	public WebElement emailButton() {
-		return wait.until(ExpectedConditions.presenceOfElementLocated(emailButton));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(emailButton));
 	}
 	
 	public WebElement nameField() {

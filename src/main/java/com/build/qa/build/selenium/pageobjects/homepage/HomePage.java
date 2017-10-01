@@ -13,7 +13,6 @@ public class HomePage extends BasePage {
 	private By buildThemeBody;
 	private By searchBox;
 	private By searchIcon; 
-	private By cartButton;
 	private By signUpBanner;
 	private By closeSignUpBanner;
 	
@@ -22,7 +21,6 @@ public class HomePage extends BasePage {
 		buildThemeBody = By.cssSelector("body.build-theme");
 		searchBox = By.id("search_txt");
 		searchIcon = By.xpath("//button[@class='button-primary search-site-search']");
-		cartButton = By.xpath("//*[@class='header-bar']/div/div/div/a[2]/button");
 		signUpBanner = By.xpath("//*[@id='newsletter-modal']/div[1]/h2");
 		closeSignUpBanner = By.xpath("//*[@id='email-subscribe-splash']/div/div/div[1]/button");
 	}
@@ -37,10 +35,6 @@ public class HomePage extends BasePage {
 	
 	public WebElement searchIcon() {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(searchIcon));
-	}
-	
-	public WebElement cartButton() {
-		return wait.until(ExpectedConditions.visibilityOfElementLocated(cartButton));
 	}
 	
 	public WebElement signUpBanner() {

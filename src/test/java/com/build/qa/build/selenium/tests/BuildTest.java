@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.build.qa.build.selenium.framework.BaseFramework;
+import com.build.qa.build.selenium.pageobjects.additionalproduct.AdditionalProduct;
 import com.build.qa.build.selenium.pageobjects.bathroomsinkcategory.BathroomSinkCategoryPage;
 import com.build.qa.build.selenium.pageobjects.cartpage.CartPage;
 import com.build.qa.build.selenium.pageobjects.homepage.HomePage;
@@ -63,8 +64,8 @@ public class BuildTest extends BaseFramework {
 	public void addProductToCartFromCategoryDrop() throws InterruptedException {
 		naviagteToProductPage();
 		ProductPage productPage = new ProductPage(driver, wait);
-		HomePage homePage = new HomePage(driver, wait);
 		CartPage cartPage = new CartPage(driver, wait);
+		AdditionalProduct additionalProduct = new AdditionalProduct(driver, wait);
 		String productTitle = productPage.productTitle().getText();
 		/*
 		 * I am not sure if this is the expected behavior but there is a difference in
@@ -74,7 +75,7 @@ public class BuildTest extends BaseFramework {
 		productTitle = productTitle.replace("White ", "");
 		Thread.sleep(1000);
 		productPage.addToBag().click();
-		homePage.cartButton().click();	
+		additionalProduct.noThanksButton().click();
 		
 		softly.assertThat(cartPage.productTitle().getText())
 			.as("%s is the name of the item added to cart", productTitle)
@@ -97,12 +98,17 @@ public class BuildTest extends BaseFramework {
 		String emailConfirmationText = "Cart Sent! The cart has been submitted to the recipient via email.";
 		naviagteToProductPage();
 		ProductPage productPage = new ProductPage(driver, wait);
-		HomePage homePage = new HomePage(driver, wait);
 		CartPage cartPage = new CartPage(driver, wait);
+		AdditionalProduct additionalProduct = new AdditionalProduct(driver, wait);
 		Thread.sleep(1000);
 		productPage.addToBag().click();
-		homePage.cartButton().click();	
+		additionalProduct.noThanksButton().click();
 		sendEmail();
+		
+		/*
+		 * I didn't receive email from the website while trying to send items manually and using this script
+		 * This is a possible defect, however the validations are complete in UI
+		 */
 		
 		softly.assertThat(cartPage.emailSentConfirmation().getText())
 		.as("Email is successfully sent")
@@ -165,8 +171,9 @@ public class BuildTest extends BaseFramework {
 		//checkSignUpBanner();
 	}
 	
-	private void sendEmail() {
+	private void sendEmail() throws InterruptedException {
 		CartPage cartPage = new CartPage(driver, wait);
+		Thread.sleep(1000);
 		cartPage.emailButton().click();
 		cartPage.nameField().sendKeys("Gowtham");
 		cartPage.emailField().sendKeys("gowthamjs@yahoo.com");
