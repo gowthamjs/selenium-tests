@@ -43,6 +43,12 @@ public class BuildTest extends BaseFramework {
 		driver.get(getConfiguration("HOMEPAGE"));
 		HomePage homePage = new HomePage(driver, wait);
 		String productName = "Monterey Mosaic 3 Light 16\" Wide Flush Mount Ceiling Fixture with Pen Shell Mosaic Shade";
+		/*
+		 * I have commented this function, as the banner is not displayed any more, 
+		 * but this was displayed last week, while was working on the tests. 
+		 * 
+		 */
+		//checkSignUpBanner();
 		ProductPage productPage = new ProductPage(driver, wait);
 		homePage.searchBox().sendKeys("Quoizel MY1613");
 		homePage.searchIcon().click();
@@ -62,7 +68,7 @@ public class BuildTest extends BaseFramework {
 	 */
 	@Test
 	public void addProductToCartFromCategoryDrop() throws InterruptedException {
-		naviagteToProductPage();
+		navigateToProductPage();
 		ProductPage productPage = new ProductPage(driver, wait);
 		CartPage cartPage = new CartPage(driver, wait);
 		AdditionalProduct additionalProduct = new AdditionalProduct(driver, wait);
@@ -96,7 +102,7 @@ public class BuildTest extends BaseFramework {
 	@Test
 	public void addProductToCartAndEmailIt() throws InterruptedException {
 		String emailConfirmationText = "Cart Sent! The cart has been submitted to the recipient via email.";
-		naviagteToProductPage();
+		navigateToProductPage();
 		ProductPage productPage = new ProductPage(driver, wait);
 		CartPage cartPage = new CartPage(driver, wait);
 		AdditionalProduct additionalProduct = new AdditionalProduct(driver, wait);
@@ -127,6 +133,11 @@ public class BuildTest extends BaseFramework {
 	@Test
 	public void facetNarrowBysResultInCorrectProductCounts() throws InterruptedException {
 		driver.get("https://www.build.com/bathroom-sinks/c108504");
+		/*
+		 * I have commented this function, as the banner is not displayed any more, 
+		 * but this was displayed last week, while was working on the tests. 
+		 * 
+		 */
 		//checkSignUpBanner();
 		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
 		String numberOfItemsCount = bathroomSinkCategoryPage.totalNumberOfItems().getText();
@@ -150,19 +161,24 @@ public class BuildTest extends BaseFramework {
 
 	private void checkSignUpBanner() {
 		HomePage homePage = new HomePage(driver, wait);
-		if (homePage.signUpBanner()!= null) {
+		if (homePage.signUpBanner() != null) {
 			homePage.closeSignUpBanner().click();
 			LOG.info("Successfully closed signup banner");
 		}
 		else {
-			LOG.info("SignUp banner is not displayed");
+			LOG.info("SignUp banner was not displayed");
 		}
 	}
 	
-	private void naviagteToProductPage() {
+	private void navigateToProductPage() {
 		driver.get("https://www.build.com/bathroom-sinks/c108504");
 		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
 		bathroomSinkCategoryPage.secondItem().click();
+		/*
+		 * I have commented this function, as the banner is not displayed any more, 
+		 * but this was displayed last week, while was working on the tests. 
+		 * 
+		 */
 		//checkSignUpBanner();
 	}
 	
@@ -170,7 +186,7 @@ public class BuildTest extends BaseFramework {
 		CartPage cartPage = new CartPage(driver, wait);
 		/*
 		 * Sleep is used here because the email button in the cart screen doesn't display the fields
-		 * to send email until the page is completely loaded.
+		 * to send email until the page is completely loaded. Please check if this is expected
 		 */
 		Thread.sleep(1000);
 		cartPage.emailButton().click();
