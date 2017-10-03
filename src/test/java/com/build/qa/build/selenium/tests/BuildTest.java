@@ -142,7 +142,7 @@ public class BuildTest extends BaseFramework {
 		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
 		String numberOfItemsCount = bathroomSinkCategoryPage.totalNumberOfItems().getText();
 		int numberofItems = Integer.parseInt(numberOfItemsCount.replace(",", ""));
-		Thread.sleep(1000);
+		Thread.sleep(2000);
 		bathroomSinkCategoryPage.filterByLength().click();
 		Thread.sleep(1000);
 		bathroomSinkCategoryPage.filterByColor().click();
