@@ -43,11 +43,13 @@ public class BuildTest extends BaseFramework {
 		driver.get(getConfiguration("HOMEPAGE"));
 		HomePage homePage = new HomePage(driver, wait);
 		String productName = "Monterey Mosaic 3 Light 16\" Wide Flush Mount Ceiling Fixture with Pen Shell Mosaic Shade";
+		
 		/*
 		 * I have commented this function, as the banner is not displayed any more, 
 		 * but this was displayed last week, while was working on the tests. 
 		 * 
 		 */
+		
 		//checkSignUpBanner();
 		ProductPage productPage = new ProductPage(driver, wait);
 		homePage.searchBox().sendKeys("Quoizel MY1613");
@@ -73,11 +75,13 @@ public class BuildTest extends BaseFramework {
 		CartPage cartPage = new CartPage(driver, wait);
 		AdditionalProduct additionalProduct = new AdditionalProduct(driver, wait);
 		String productTitle = productPage.productTitle().getText();
+		
 		/*
 		 * I am not sure if this is the expected behavior but there is a difference in
 		 * product title in product details and cart. so I have made a string manipulation,
 		 * assuming its the expected behavior
 		 */
+		
 		productTitle = productTitle.replace("White ", "");
 		Thread.sleep(1000);
 		productPage.addToBag().click();
@@ -133,11 +137,13 @@ public class BuildTest extends BaseFramework {
 	@Test
 	public void facetNarrowBysResultInCorrectProductCounts() throws InterruptedException {
 		driver.get("https://www.build.com/bathroom-sinks/c108504");
+		
 		/*
 		 * I have commented this function, as the banner is not displayed any more, 
 		 * but this was displayed last week, while was working on the tests. 
 		 * 
 		 */
+		
 		//checkSignUpBanner();
 		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
 		String numberOfItemsCount = bathroomSinkCategoryPage.totalNumberOfItems().getText();
@@ -174,26 +180,30 @@ public class BuildTest extends BaseFramework {
 		driver.get("https://www.build.com/bathroom-sinks/c108504");
 		BathroomSinkCategoryPage bathroomSinkCategoryPage = new BathroomSinkCategoryPage(driver, wait);
 		bathroomSinkCategoryPage.secondItem().click();
+		
 		/*
 		 * I have commented this function, as the banner is not displayed any more, 
 		 * but this was displayed last week, while was working on the tests. 
 		 * 
 		 */
+		
 		//checkSignUpBanner();
 	}
 	
 	private void sendEmail() throws InterruptedException {
 		CartPage cartPage = new CartPage(driver, wait);
+		
 		/*
 		 * Sleep is used here because the email button in the cart screen doesn't display the fields
 		 * to send email until the page is completely loaded. Please check if this is expected
 		 */
+		
 		Thread.sleep(1000);
 		cartPage.emailButton().click();
 		cartPage.nameField().sendKeys("Gowtham");
 		cartPage.emailField().sendKeys("gowthamjs@yahoo.com");
-		cartPage.receipientName().sendKeys("Meena");
-		cartPage.receipientEmail().sendKeys("meenakmm@yahoo.co.in");
+		cartPage.receipientName().sendKeys("Test");
+		cartPage.receipientEmail().sendKeys("jgilmore+SeleniumTest@build.com");
 		cartPage.messageField().sendKeys("This is Gowtham, sending you a cart from my automation!");
 		cartPage.sendEmailButton().click();
 	}
